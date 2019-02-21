@@ -1,9 +1,8 @@
 <template>
-<div>
+<v-layout row wrap>
   <p>{{name}}</p>
-  <p>{{url}}</p>
-  <img :src="url" alt="">
-  </div>
+  <v-img :src="url" alt="" width="100" height="50"></v-img>
+</v-layout>
 </template>
 
 <script>
