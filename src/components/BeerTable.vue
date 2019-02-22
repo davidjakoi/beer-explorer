@@ -4,12 +4,18 @@
       <v-spacer></v-spacer>
       <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
     </v-card-title>
-    <v-data-table :headers="headers" :items="beers" disable-initial-sort class="elevation-1 mx-4" light :search="search">
-      <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+    <v-data-table
+      :headers="headers"
+      :items="beers"
+      disable-initial-sort
+      class="elevation-1 mx-4"
+      light
+      :search="search"
+    >
       <template slot="items" slot-scope="props">
-        
-        <td class="white blue--text font-weight-bold subheading"><router-link :to="{ name: 'beer', params: { id: props.item.id } }">{{ props.item.name }}</router-link></td>
-        
+        <td class="white blue--text subheading">
+          <router-link :to="{ name: 'beer', params: { id: props.item.id } }">{{ props.item.name }}</router-link>
+        </td>
         <td class="white blue--text subheading">
           <v-img class="ma-2" :src="props.item.image_url" height="50" width="25" contain></v-img>
         </td>
@@ -24,9 +30,6 @@
 <script>
 const axios = require("axios");
 export default {
-  components: {
-    
-  },
   data() {
     return {
       search: "",
@@ -34,20 +37,32 @@ export default {
       headers: [
         {
           text: "Name",
-          align: "left",
-          sortable: false,
           value: "name",
-          width: "300",
-          class: "blue lighten-1 white--text title"
+          class: "blue lighten-1 white--text title",
+          width: "300"
         },
-        { text: "", value: "sdasa", sortable: false, class: "blue lighten-1" },
+        {
+          text: "",
+          value: "image",
+          sortable: false,
+          class: "blue lighten-1"
+        },
         {
           text: "First brewed",
           value: "first_brewed",
           class: "blue lighten-1 white--text title"
         },
-        { text: "ABV", value: "abv", class: "blue lighten-1 white--text title" },
-        { text: "", value: "tagline", class: "blue lighten-1", sortable: false }
+        {
+          text: "ABV",
+          value: "abv",
+          class: "blue lighten-1 white--text title"
+        },
+        {
+          text: "",
+          value: "tagline",
+          class: "blue lighten-1",
+          sortable: false
+        }
       ]
     };
   },
